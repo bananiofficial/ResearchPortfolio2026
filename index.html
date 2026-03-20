@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banani Sarkar – Postgraduate Scholar, TISS Mumbai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:       #0d1b3e;
+      --navy-mid:   #1a3060;
+      --blue:       #2554a0;
+      --blue-light: #3a6bc7;
+      --gold:       #c9a84c;
+      --gold-light: #e8c97a;
+      --cream:      #faf8f3;
+      --warm-white: #ffffff;
+      --text-dark:  #1a1a2e;
+      --text-mid:   #3a3a5c;
+      --text-light: #6b6b8a;
+      --border:     #e0dcd4;
+      --shadow-sm:  0 2px 8px rgba(13,27,62,0.08);
+      --shadow-md:  0 6px 24px rgba(13,27,62,0.12);
+      --shadow-lg:  0 16px 48px rgba(13,27,62,0.18);
+      --radius:     12px;
+      --radius-sm:  8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1e4080 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(58,107,199,0.2)  0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-photo {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(201,168,76,0.6);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      flex-shrink: 0;
+      animation: fadeInRight 0.8s ease;
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .header-text { flex: 1; animation: fadeInLeft 0.8s ease; }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .header-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .header-role {
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      opacity: 0.9;
+      font-style: italic;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    .header-sub {
+      font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+      opacity: 0.82;
+      margin-bottom: 0.2rem;
+    }
+
+    .header-contact {
+      font-size: clamp(0.8rem, 1.5vw, 0.92rem);
+      opacity: 0.85;
+      margin-top: 0.6rem;
+      color: var(--gold-light);
+      line-height: 1.8;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--warm-white);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 1rem;
+      color: var(--navy);
+      margin-left: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      flex: 1;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.88rem 1rem;
+      color: var(--navy-mid);
+      text-decoration: none;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover { color: var(--blue); border-bottom-color: var(--gold); background: rgba(37,84,160,0.04); }
+
+    /* ─── MAIN ─── */
+    .page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    .content-section { display: none; }
+    .content-section.active { display: block; animation: fadeUp 0.4s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--warm-white);
+      border-radius: var(--radius);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    /* ─── HEADINGS ─── */
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+
+    /* ─── TIMELINE ─── */
+    .tl-item {
+      position: relative;
+      padding: 1rem 1rem 1rem 2.2rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--gold);
+      background: var(--warm-white);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -8px; top: 1.1rem;
+      width: 13px; height: 13px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .tl-item:hover { border-color: var(--blue); transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .tl-item:hover::before { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+
+    .tl-title { font-weight: 700; color: var(--navy); font-size: 1rem; display: block; margin-bottom: 0.25rem; }
+    .tl-org   { color: var(--blue); font-size: 0.9rem; font-style: italic; margin: 0.1rem 0; }
+    .tl-desc  { color: var(--text-mid); font-size: 0.93rem; margin-top: 0.3rem; line-height: 1.7; text-align: justify; }
+
+    /* ─── YEAR TAG ─── */
+    .year-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* ─── ACHIEVEMENT BADGES ─── */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .badge:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 420px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s, box-shadow 0.22s;
+      line-height: 1.4;
+    }
+
+    .badge:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-md); }
+
+    /* ─── SKILL GRID ─── */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .skill-cat {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+    }
+
+    .skill-cat h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 0.97rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-item {
+      padding: 0.4rem 0.7rem;
+      margin: 0.3rem 0;
+      background: var(--warm-white);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+    }
+
+    /* ─── STYLED LIST ─── */
+    .styled-list { list-style: none; padding: 0; }
+    .styled-list li {
+      position: relative;
+      padding: 0.45rem 0 0.45rem 1.6rem;
+      color: var(--text-mid);
+      font-size: 0.94rem;
+      line-height: 1.7;
+      border-bottom: 1px solid var(--border);
+      text-align: justify;
+    }
+    .styled-list li:last-child { border-bottom: none; }
+    .styled-list li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--gold); font-size: 1rem;
+    }
+
+    /* ─── SOCIAL LINKS ─── */
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      padding: 0.55rem 0;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Source Serif 4', serif;
+      text-decoration: none;
+      color: white;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .social-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .social-btn.linkedin { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+
+    /* ─── CONTACT BOX ─── */
+    .contact-box {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-box p { font-size: 0.95rem; line-height: 2; opacity: 0.92; }
+    .contact-box a { color: var(--gold-light); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    /* ─── LANGUAGE PILLS ─── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .lang-pill {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+
+    /* ─── COURSEWORK BLOCK ─── */
+    .course-block {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.93rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    .course-block strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      font-size: 0.97rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.5rem;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-back:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ─── FOOTER ─── */
+    .site-footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+    }
+
+    .site-footer p { opacity: 0.8; line-height: 1.8; }
+    .site-footer strong { color: var(--gold-light); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 700px) {
+      .header-inner {
+        display: grid;
+        grid-template-areas: "text text" "photo photo";
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.4rem 1.2rem;
+        justify-items: center;
+      }
+
+      .header-text  { grid-area: text; }
+      .header-photo { grid-area: photo; width: 110px; height: 110px; }
+
+      .nav-toggle { display: flex; align-items: center; }
+      .nav-links  { display: none; flex-direction: column; width: 100%; border-top: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+
+      nav a { padding: 0.75rem 1.2rem; border-bottom: 1px solid var(--border); border-left: 3px solid transparent; font-size: 0.9rem; }
+      nav a:hover { border-left-color: var(--gold); border-bottom-color: var(--border); }
+      nav a.active-mobile { border-left-color: var(--gold) !important; color: var(--gold) !important; border-bottom-color: var(--border) !important; background: rgba(201,168,76,0.08); }
+
+      .card { padding: 1.2rem 1rem; }
+      .badges-grid { grid-template-columns: 1fr; }
+      .badge:last-child:nth-child(odd) { grid-column: 1; max-width: 100%; }
+      .skill-grid  { grid-template-columns: 1fr; }
+      .lang-grid   { grid-template-columns: 1fr; }
+      .page-wrap   { padding: 1rem 0.8rem 2rem; }
+      .social-btn  { width: 130px; font-size: 0.8rem; }
+      .btn-row { gap: 0.6rem; }
+      .btn-back { font-size: 0.82rem; padding: 0.5rem 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="header-inner">
+    <div class="header-text">
+      <div class="header-name">Banani Sarkar</div>
+      <div class="header-role">Postgraduate Scholar | Tata Institute of Social Sciences (TISS), Mumbai</div>
+      <div class="header-sub">Social Work Researcher | Dalit &amp; Tribal Studies | Inclusive Development</div>
+      <div class="header-contact">
+        📧 bananiofficial[dot]95[at]gmail[dot]com &nbsp;&nbsp; ✆ +91 80162 08232 &nbsp;&nbsp; 🌍 Mumbai, Maharashtra
+      </div>
+    </div>
+    <img src="https://i.ibb.co/0ym6vLXB/Banani-Sarka.jpg" alt="Banani Sarkar" class="header-photo">
+  </div>
+</header>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect y="3"  width="22" height="2.2" rx="1" fill="currentColor"/>
+        <rect y="10" width="22" height="2.2" rx="1" fill="currentColor"/>
+        <rect y="17" width="22" height="2.2" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a onclick="showSection('about')"       data-section="about">About</a>
+      <a onclick="showSection('achievements')" data-section="achievements">Achievements</a>
+      <a onclick="showSection('experience')"  data-section="experience">Experience</a>
+      <a onclick="showSection('research')"    data-section="research">Research</a>
+      <a onclick="showSection('coursework')"  data-section="coursework">Coursework</a>
+      <a onclick="showSection('skills')"      data-section="skills">Skills</a>
+      <a onclick="showSection('connect')"     data-section="connect">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div class="page-wrap">
+
+  <!-- ── ABOUT ── -->
+  <div id="about" class="content-section active">
+    <div class="card">
+      <h2 class="section-title">About</h2>
+      <p style="font-size:1.05rem;line-height:1.85;color:var(--text-mid);text-align:justify;">
+        Banani Sarkar is an aspiring social science researcher trained at the Tata Institute of Social Sciences (TISS), Mumbai, with advanced interdisciplinary preparation across the social sciences, education, and humanities. She is currently pursuing her postgraduate studies in Social Work (DTSA), building upon a prior postgraduate degree. Her academic orientation is marked by conceptual clarity, methodological rigour, and sustained empirical engagement, with research interests encompassing social systems, institutional processes, policy outcomes, Dalit and tribal studies, and inclusive development.
+      </p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/bananiofficial/" target="_blank" class="social-btn linkedin">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Education</h2>
+      <div class="tl-item">
+        <span class="tl-title">Master of Arts in Social Work — Dalit and Tribal Studies and Action (DTSA)</span>
+        <div class="tl-org">Tata Institute of Social Sciences (TISS), Mumbai</div>
+        <div class="tl-desc"><span class="year-tag">2026 Expected</span></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-title">Bachelor of Education in English (B.Ed.)</span>
+        <div class="tl-org">University of Burdwan</div>
+        <div class="tl-desc"><span class="year-tag">2021</span></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-title">Master of Arts in English (M.A.)</span>
+        <div class="tl-org">Visva-Bharati, Santiniketan</div>
+        <div class="tl-desc"><span class="year-tag">2019</span></div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-title">Diploma in Information Technology &amp; Application (DITA)</span>
+        <div class="tl-org">Youth Computer Training Centre</div>
+        <div class="tl-desc"><span class="year-tag">2015</span></div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /about -->
+
+
+  <!-- ── ACHIEVEMENTS ── -->
+  <div id="achievements" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Achievements &amp; Qualifications</h2>
+      <div class="badges-grid">
+        <div class="badge">NET Qualified 2025 — Social Work</div>
+        <div class="badge">NET Qualified 2025 — Sociology</div>
+        <div class="badge">GATE Qualified 2025 — Humanities &amp; Social Sciences (XH) — Sociology</div>
+        <div class="badge">Swami Vivekananda Merit Cum Means Scholarship — Government of West Bengal</div>
+        <div class="badge">Kanyashree (K-3) Scholarship — Government of West Bengal</div>
+        <div class="badge">Kanyashree (K-2) Scholarship — Government of West Bengal</div>
+        <div class="badge">"Chitra Ratnasree" Award — Excellence in Painting, 2016</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /achievements -->
+
+
+  <!-- ── EXPERIENCE ── -->
+  <div id="experience" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Professional Experience</h2>
+
+      <div class="tl-item">
+        <span class="tl-title">Research Intern — Ambedkar Chair</span>
+        <div class="tl-org">Symbiosis International University <span class="year-tag">Pursuing</span></div>
+        <div class="tl-desc">Conducting academic research under the Ambedkar Chair, contributing to scholarly inquiry on Ambedkarite thought, social justice, and constitutional values.</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">Mentor — Village Transformation Programme (Astitva)</span>
+        <div class="tl-org">IIT Roorkee <span class="year-tag">Pursuing</span></div>
+        <div class="tl-desc">Supporting grassroots community development and rural transformation initiatives through mentorship and programme facilitation.</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">Intern — Ekalakar (Startup)</span>
+        <div class="tl-org">In collaboration with IIM Mumbai <span class="year-tag">October – November 2025</span></div>
+        <div class="tl-desc">Gained business research, documentation, and stakeholder-engagement skills to support scalable social innovation models focused on empowering tribal livelihoods; contributed to project proposal development.</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">Intern — Mahila Arthik Vikas Mahamandal (MAVIM)</span>
+        <div class="tl-org">MAVIM Headquarters, Mumbai <span class="year-tag">June – July 2025</span></div>
+        <div class="tl-desc">Built analytical and programme-support capabilities while contributing to women-centric livelihood and financial inclusion initiatives through rural entrepreneurship ideas.</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">Ad-hoc Teacher (English)</span>
+        <div class="tl-org">Parulia K. K. High School (Government School), West Bengal <span class="year-tag">January 2022 – August 2024</span></div>
+        <div class="tl-desc">Demonstrated grassroots leadership by practising inclusive pedagogy and strengthening learning outcomes for first-generation learners in a government school setting.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Leadership &amp; Volunteering</h2>
+      <ul class="styled-list">
+        <li>Head, Illustration Wing, Cultural Team, Nabadwip Vidyasagar College — led visual and creative outputs for institutional cultural activities.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Extracurricular Activities</h2>
+      <ul class="styled-list">
+        <li>Art Enthusiast — professionally trained for nine years; recipient of the Chitra Ratnasree Award (2016) for excellence in Painting.</li>
+        <li>Freelance Writer on socio-political issues.</li>
+        <li>Public Speaker — presented papers at national and international academic conferences.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /experience -->
+
+
+  <!-- ── RESEARCH ── -->
+  <div id="research" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Research &amp; Fieldwork Experience</h2>
+
+      <div class="tl-item">
+        <span class="tl-title">Field Practicum — SCHOOL (Vriddha Mitra) Organisation</span>
+        <div class="tl-org"><span class="year-tag">August 2024 – June 2025</span></div>
+        <div class="tl-desc">Strengthened programme implementation and monitoring skills through direct engagement with elderly beneficiaries in urban slums; focused on physical and mental health issues of the elderly and their livelihood support.</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">Conference Paper Presentation</span>
+        <div class="tl-org">Visva-Bharati, Santiniketan <span class="year-tag">18 November 2024</span></div>
+        <div class="tl-desc">"Reimagining Social Justice: The Role of Ambedkar and Buddhist Epistemology in Soutrantik Marxism." International Conference on "Sharad Patil's Philosophical Discourse of Soutantrik Marxism: Synthesis of Marx-Phule-Ambedkar &amp; Buddhist Epistemology."</div>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-title">National Webinar Paper Presentation</span>
+        <div class="tl-org">Department of English, Hindu Girls College, Sonepat <span class="year-tag">5 March 2025</span></div>
+        <div class="tl-desc">"Giving Voice to the Voiceless: Dalit Literature and Social Justice." DHE-approved National Webinar.</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /research -->
+
+
+  <!-- ── COURSEWORK ── -->
+  <div id="coursework" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Relevant Coursework</h2>
+
+      <div class="course-block">
+        <strong>Master of Arts in Social Work — DTSA (TISS Mumbai)</strong>
+        Dalit Studies; Tribal Studies and Action; Social Work Methods; Community Organisation and Development; Research Methods in Social Sciences; Social Policy and Administration; Human Rights and Social Justice; Gender Studies; Fieldwork Practicum.
+      </div>
+
+      <div class="course-block">
+        <strong>Bachelor of Education in English (University of Burdwan)</strong>
+        Pedagogy of English; Curriculum and Instruction; Educational Psychology; Educational Sociology; Assessment and Evaluation; Inclusive Education; School Internship.
+      </div>
+
+      <div class="course-block">
+        <strong>Master of Arts in English (Visva-Bharati University)</strong>
+        Literary Theory and Criticism; Postcolonial Literature; Indian Writing in English; British and American Literature; Linguistics; Comparative Literature.
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /coursework -->
+
+
+  <!-- ── SKILLS ── -->
+  <div id="skills" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Computer &amp; Software Skills</h2>
+      <div class="skill-grid">
+        <div class="skill-cat">
+          <h4>Office &amp; Productivity</h4>
+          <div class="skill-item">Microsoft Word, Excel, PowerPoint</div>
+          <div class="skill-item">Google Docs, Slides, Sheets, Forms</div>
+        </div>
+        <div class="skill-cat">
+          <h4>Design &amp; Visualisation</h4>
+          <div class="skill-item">Canva</div>
+          <div class="skill-item">Tableau</div>
+          <div class="skill-item">Power BI</div>
+        </div>
+        <div class="skill-cat">
+          <h4>Research &amp; Data Tools</h4>
+          <div class="skill-item">Taguette (qualitative coding)</div>
+          <div class="skill-item">Zotero (reference management)</div>
+          <div class="skill-item">OpenRefine (data cleaning)</div>
+          <div class="skill-item">SPSS (statistical analysis)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Languages</h2>
+      <div class="lang-grid">
+        <div class="lang-pill">English — Read, Write, Speak (Proficient)</div>
+        <div class="lang-pill">Bengali — Read, Write, Speak (Native)</div>
+        <div class="lang-pill">Hindi — Read, Write, Speak (Proficient)</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /skills -->
+
+
+  <!-- ── CONNECT ── -->
+  <div id="connect" class="content-section">
+    <div class="card">
+      <h2 class="section-title">Connect &amp; Collaborate</h2>
+      <p style="text-align:center;color:var(--text-mid);font-size:1rem;margin-bottom:0.5rem;">
+        Open to research collaborations, academic discussions, and social development initiatives.
+      </p>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/bananiofficial/" target="_blank" class="social-btn linkedin">LinkedIn</a>
+      </div>
+
+      <div class="contact-box">
+        <h3>Contact Information</h3>
+        <p>
+          📧 Email: bananiofficial[dot]95[at]gmail[dot]com<br>
+          📧 Institute: m2024dta006[at]stud[dot]tiss[dot]ac[dot]in<br>
+          ✆ Phone: +91 80162 08232<br>
+          🌍 TISS Mumbai, VN Purav Marg, Deonar, Mumbai — 400088
+        </p>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="showSection('about')">← Back to Home</button>
+      <button class="btn-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+  </div><!-- /connect -->
+
+</div><!-- /page-wrap -->
+
+<footer class="site-footer">
+  <p><strong>© 2025 Banani Sarkar.</strong> All Rights Reserved.</p>
+  <p>Postgraduate Scholar, Tata Institute of Social Sciences (TISS), Mumbai</p>
+</footer>
+
+<script>
+  var NAV_GOLD   = '#c9a84c';
+  var NAV_NORMAL = '#1a3060';
+
+  function setActiveNav(id) {
+    document.querySelectorAll('nav a[data-section]').forEach(function(a) {
+      if (a.getAttribute('data-section') === id) {
+        a.style.color        = NAV_GOLD;
+        a.style.borderBottom = '3px solid ' + NAV_GOLD;
+        a.style.fontWeight   = '700';
+        a.style.background   = 'rgba(201,168,76,0.08)';
+        a.classList.add('active-mobile');
+      } else {
+        a.style.color        = NAV_NORMAL;
+        a.style.borderBottom = '3px solid transparent';
+        a.style.fontWeight   = '600';
+        a.style.background   = '';
+        a.classList.remove('active-mobile');
+      }
+    });
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.content-section').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    var el = document.getElementById(id);
+    if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    setActiveNav(id);
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  function toggleMobileNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close mobile nav when a link is clicked
+  document.querySelectorAll('nav a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Set About active on load
+  setActiveNav('about');
+</script>
+</body>
+</html>
